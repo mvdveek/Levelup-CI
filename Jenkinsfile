@@ -10,17 +10,25 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-                echo 'Building..'
+                sh 'mvn test'
             }
         }
         stage('Test') {
             steps {
-                echo 'Testing..'
+                sh 'mvn verify -Pintegrationtest'
+
             }
         }
         stage('Deploy') {
             steps {
                 echo 'Deploying....'
+                retry(3) {
+                    echo 'Retrying....'
+                }
+
+                timeout(time: 3, unit: 'MINUTES') {
+                    echo 'Waiting....'
+                }
             }
         }
         
