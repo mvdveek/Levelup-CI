@@ -29,6 +29,9 @@ pipeline {
                 timeout(time: 3, unit: 'MINUTES') {
                     echo 'Waiting....'
                 }
+                timeout(time:5, unit:'DAYS') {
+                     input message:'Approve deployment?'
+                }
             }
         }
         
