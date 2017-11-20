@@ -17,10 +17,11 @@ pipeline {
                 echo 'Deploying....'
             }
         }
-        post {
+        
+    }
+    post {
           failure {
             echo 'Failure...'
           }
         }
-    }
 }
